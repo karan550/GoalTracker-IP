@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer + sensible defaults for the app. Uses Tailwind utility tokens. */
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-dark-bg text-gray-100 font-sans antialiased;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { @apply text-primary-400 font-medium; }
+  a:hover { @apply text-primary-300; }
+
+  /* Fix input visibility - ensure text is always visible */
+  input,
+  textarea,
+  select {
+    color: rgb(243, 244, 246) !important;
+    -webkit-text-fill-color: rgb(243, 244, 246) !important;
+  }
+  
+  input[type="password"] {
+    color: rgb(243, 244, 246) !important;
+    -webkit-text-fill-color: rgb(243, 244, 246) !important;
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(107, 114, 128) !important;
+    -webkit-text-fill-color: rgb(107, 114, 128) !important;
+    opacity: 1 !important;
+  }
+  
+  /* Options in select dropdown */
+  select option {
+    background-color: rgb(31, 41, 55);
+    color: rgb(243, 244, 246);
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6 shadow-xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-primary text-white font-semibold py-3 px-5 rounded-lg shadow-glow transition-transform duration-200 transform hover:scale-105 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-shadow;
+  }
+
+  .card {
+    @apply bg-dark-card rounded-2xl p-6 border border-dark-border hover:border-primary-500/30 transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-primary;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* Minimal calendar and spinner tweaks */
+.react-calendar { @apply bg-dark-card border border-dark-border rounded-xl p-4 !important; }
+.spinner { border: 3px solid rgba(139,92,246,0.08); border-top-color: #8b5cf6; border-radius: 50%; width: 36px; height: 36px; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* keep some of the original app styles for demo */
+#root { max-width: 1280px; margin: 0 auto; padding: 2rem; }
+.logo { height: 6em; padding: 1.5em; transition: filter 300ms; }
+.read-the-docs { color: #888; }
